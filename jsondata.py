@@ -1,11 +1,13 @@
 import json
-import requests
+import requests as rp
+from collections import Counter as ct
 
 from time import sleep
 from progress.spinner import MoonSpinner
 
 def data():
-    response = requests.get("https://jsonplaceholder.typicode.com/users")
+    json_data = dict()
+    response = rp.get("https://jsonplaceholder.typicode.com/users")
     json_data = response.json() if response and response.status_code == 200 else None
     data = []
 
@@ -19,46 +21,54 @@ def data():
 
     print(data)
 
+def api_request():
+    response = rp.get("https://api.dccresource.com/api/games")
+    json_data = response.json() if response and response.status_code == 200 else None
+    return json_data
 
-def publisher_data():
+def publisher_data(json_data):
     data = []
     sales_Total = 0.0
     titles_Published = 0
-
-    response = requests.get("https://api.dccresource.com/api/games")
-    json_data = response.json() if response and response.status_code == 200 else None
     
     bar = MoonSpinner('Processing...', max = len(json_data))
 
         #print("publisher: %s" % (json_object["publisher"]))
 
+    # counts number of titles published by Nintendo
+    # counts global sales by Nintendo
     for json_object in json_data:
         if json_object["publisher"] == "Nintendo":
             #data.append(json_object["globalSales"])
             titles_Published += 1
             sales_Total += json_object["globalSales"]
-           
+    
+    # Moonspinner cause why not?           
     bar.next()
     sleep(0.02)
 
     print(f"\n Nintendo's has published {titles_Published} titles")       
     print(f"\n Nintendo's global sales: ${sales_Total}")       
 
-def find_publisher():
-    response = requests.get("https://api.dccresource.com/api/games")
-    json_data = response.json() if response and response.status_code == 200 else None
+def find_publisher(json_data):
     
-    publisher_set = set(("Publishers"))
-
+    #Constructor
+    publisher_set = set((""))
+    
     for json_object in json_data:
         publisher_set.add(json_object["publisher"])
+                
     
-    print(publisher_set)
-
+    print(publisher_set) 
+    print(len(publisher_set)) # 579 publishers
+    
+def count_publisher(json_data):
+    return null
 
 # publisher_data()
 
-find_publisher()
+
+find_publisher(api_request())
 
 
 
