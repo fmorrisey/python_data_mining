@@ -51,7 +51,7 @@ def publisher_data(json_data):
     print(f"\n Nintendo's global sales: ${sales_Total}")       
 
 def find_publisher(json_data):
-    
+    #finds unique publishers taking advantage of the set data structure
     #Constructor
     publisher_set = set((""))
     
@@ -61,14 +61,34 @@ def find_publisher(json_data):
     
     print(publisher_set) 
     print(len(publisher_set)) # 579 publishers
-    
+
+# Counts the number of publishers    
 def count_publisher(json_data):
-    return null
+    
+    publishers = ct(k['publisher'] for k in json_data if k.get('publisher'))
+    # for publisher, count in publishers.most_common():
+        # print(publisher, count)
+    return publishers
+
+def droplowest(publishers, min): #deletes publishers with less than min number
+    for publisher , count in publishers.most_common():
+        if count < min:
+            del publishers[publisher]
+
+    for publisher, count in publishers.most_common():
+        print(publisher, count)
+
+    print(len(publishers))
+
+
 
 # publisher_data()
 
+json_data = api_request()
+#find_publisher(json_data)
+publishers = count_publisher(json_data)
+top_publishers = droplowest(publishers, 50)
 
-find_publisher(api_request())
 
 
 
