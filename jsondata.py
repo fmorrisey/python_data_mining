@@ -66,7 +66,7 @@ def count_publisher(json_data):
         # print(publisher, count)
     return publishers
 
-def droplowest(publishers, min): #deletes publishers with less than min number
+def droplowestPublisher(publishers, min): #deletes publishers with less than min number
     for publisher , titles in publishers.most_common():
         if titles < min:
             del publishers[publisher]
@@ -78,7 +78,7 @@ def droplowest(publishers, min): #deletes publishers with less than min number
     
     return publishers
 
-def top_publishers(publishers, top): #deletes publishers with less than min number
+def top_publishers(publishers, top): 
     top_ten = set((""))
     top_ten = dict(ct(publishers).most_common(top))
     #for publisher, count in publishers.most_common():
@@ -94,6 +94,9 @@ FUNCTIONS
 
 json_data = api_request()
 
+
+
+
 publisher_data(json_data)
 
 #finds unique publishers taking advantage of the set data structure
@@ -104,12 +107,12 @@ publisher_data(json_data)
 publishers = count_publisher(json_data)
 
 #drops publishers with less than 50 titles
-top_50_publishers = droplowest(publishers, 50)
+top_50_publishers = droplowestPublisher(publishers, 50)
 
 top_10_publishers = top_publishers(top_50_publishers, 10)
 
-
 """
+
 data_in_file = json.load(json_data, strict=False)
             # 4. Iterate over objects and print relevant fields
             for json_object in data_in_file:

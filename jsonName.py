@@ -34,7 +34,7 @@ def find_publisher(json_data):
     publisher_set = set((""))
     
     for json_object in json_data:
-        publisher_set.add(json_object["publisher"])
+        publisher_set.add(json_object.publisher)
    
     print(f"A list {publisher_set}") 
     print(len(publisher_set)) # 579 publishers
@@ -83,6 +83,7 @@ json_data = api_request()
 # Publisher, number of titles Published
 publishers = count_publisher(json_data)
 
+"""
 #drops publishers with less than 50 titles
 top_50_publishers = droplowest(publishers, 50)
 
@@ -90,7 +91,6 @@ top_10_publishers = top_publishers(top_50_publishers, 10)
 
 
 
-"""
 data_in_file = json.load(json_data, strict=False)
             # 4. Iterate over objects and print relevant fields
             for json_object in data_in_file:

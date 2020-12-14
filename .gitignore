@@ -132,3 +132,4 @@ dmypy.json
 .venv
 .vscode
 kibana-7.10.1-darwin-x86_64
+.ds_store
