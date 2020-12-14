@@ -20,14 +20,14 @@ def api_request():      #Handle errors gracefully
 def searchMeAmadeus(game_data):
 
     search_term = 'halo'
-    """
+    
     results = es.index(index='name_search', id=1, body=game_data)
     results = es.get(index="name_search", id=1)
 
     print(results['_source'])
 
     results = es.indices.refresh(index="name_search")
-    """
+    
     
     results = es.search(
         index=game_data,
