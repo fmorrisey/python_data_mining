@@ -9,7 +9,7 @@ import collections as col
 
 def data():
     response = requests.get("https://jsonplaceholder.typicode.com/users")
-    json_data = response.json() if response and response.status_code == 200 else None
+    json_data = json.loads() if response and response.status_code == 200 else None
     data = []
 
     for json_object in json_data:
@@ -23,9 +23,11 @@ def data():
 
     print(data)
 
-def api_request():      #Handle errors gracefully
+def api_request():      #Handle
     response = requests.get("https://api.dccresource.com/api/games")
-    json_data = response.json() if response and response.status_code == 200 else None
+    json_data = response.json()            #Creates a dict
+    #json_data = str(response.content)       #creates a string
+    print(type(json_data))
     return json_data
 
 def publisher_data(json_data):
