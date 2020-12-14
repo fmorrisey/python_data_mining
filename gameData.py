@@ -6,8 +6,7 @@ from types import SimpleNamespace
 
 from collections import Counter as ct
 import collections as col
-
-
+    
 def api_request(): #Handle errors gracefully
     response = requests.get("https://api.dccresource.com/api/games")
     json_data = json.loads(response.content, object_hook=lambda d:SimpleNamespace(**d))\
@@ -79,8 +78,6 @@ def zip_Platforms(platforms):
     print(titles)
     return names, titles
     
-    
-
 def group_consoleManufacture(publishers, top): #deletes publishers with less than min number
     top_ten = set((""))
 
