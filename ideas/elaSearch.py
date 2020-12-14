@@ -27,8 +27,7 @@ def searchMeAmadeus(game_data):
     print(results['_source'])
 
     results = es.indices.refresh(index="name_search")
-    
-    
+        
     results = es.search(
         index=game_data,
         size=20,
