@@ -73,12 +73,13 @@ def split_Values(platforms): #ReturnsDict
     print(platform_titles)
     return platform_titles
 
-def zip_Names(platforms):
+def zip_Platforms(platforms):
     names , titles = zip(*platforms.items())
+    print(names)
+    print(titles)
     return names, titles
     
-
-
+    
 
 def group_consoleManufacture(publishers, top): #deletes publishers with less than min number
     top_ten = set((""))
@@ -93,12 +94,12 @@ def group_consoleManufacture(publishers, top): #deletes publishers with less tha
 
 game_data = api_request()
 
-find_Platforms(game_data)                   #find unique platforms
-platforms = count_Platform(game_data)       #Counts titles per platform
-topPlatforms = top_Platforms(platforms, 25) #Sorts the data by top platform descending order
-holdmydata, holdmydata2 = zip_Names(topPlatforms)         #    
-print(holdmydata)
-print(holdmydata2)
+find_Platforms(game_data)                       #find unique platforms
+platforms = count_Platform(game_data)           #Counts titles per platform
+topPlatforms = top_Platforms(platforms, 25)     #Sorts the data by top platform descending order
+
+#returns two separate strings in order of platform names and titles count
+platform_names, platform_titles_count = zip_Platforms(topPlatforms)
 
 """
 platform_names = split_Key(topPlatforms)
