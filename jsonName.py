@@ -6,26 +6,10 @@ from types import SimpleNamespace
 from collections import Counter as ct
 import collections as col
 
-
-def data():
-    response = requests.get("https://jsonplaceholder.typicode.com/users")
-    json_data = response.json() if response and response.status_code == 200 else None
-    data = []
-
-    for json_object in json_data:
-        print("id: %s" % (json_object["id"]))
-        print("name: %s" % (json_object["name"]))
-
-
-        data.append(json_object["id"])
-        data.append(json_object["name"])
-        data.append(json_object["email"])
-
-    print(data)
-
-def api_request():      #Handle errors gracefully
+def api_request(): #Handle errors gracefully
     response = requests.get("https://api.dccresource.com/api/games")
-    json_data = response.json() if response and response.status_code == 200 else None
+    json_data = json.loads(response.content, object_hook=lambda d:SimpleNamespace(**d))\
+        if response and response.status_code == 200 else None
     return json_data
 
 def publisher_data(json_data):
@@ -36,13 +20,12 @@ def publisher_data(json_data):
     # counts number of titles published by Nintendo
     # counts global sales by Nintendo
     for json_object in json_data:
-        if json_object["publisher"] == "Nintendo":
+        if json_object.publisher == "Nintendo":
             #data.append(json_object["globalSales"])
             titles_Published += 1
-            sales_Total += json_object["globalSales"]
+            sales_Total += json_object.globalSales
     print(f"\n Nintendo's has published {titles_Published} titles")       
     print(f"\n Nintendo's global sales: ${sales_Total}")       
-
 
 def find_publisher(json_data):
     #finds unique publishers taking advantage of the set data structure
@@ -59,9 +42,9 @@ def find_publisher(json_data):
 # Counts the number of publishers    
 def count_publisher(json_data):
     
-    publishers = ct(k['publisher'] for k in json_data if k.get('publisher'))
-    # for publisher, count in publishers.most_common():
-        # print(publisher, count)
+    publishers = ct(k.publisher for k in json_data if k.publisher)
+    for publisher, count in publishers.most_common():
+        print(publisher, count)
     return publishers
 
 def droplowest(publishers, min): #deletes publishers with less than min number
@@ -92,8 +75,7 @@ FUNCTIONS
 
 json_data = api_request()
 
-publisher_data(json_data)
-
+#publisher_data(json_data)
 #finds unique publishers taking advantage of the set data structure
 #find_publisher(json_data)                      
 
@@ -105,6 +87,7 @@ publishers = count_publisher(json_data)
 top_50_publishers = droplowest(publishers, 50)
 
 top_10_publishers = top_publishers(top_50_publishers, 10)
+
 
 
 """

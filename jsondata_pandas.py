@@ -4,26 +4,29 @@ import requests as rp
 from collections import Counter as ct
 import collections as col
 
+"""
+https://www.springboard.com/blog/data-mining-python-tutorial/#:~:text=Pandas%20is%20an%20open%2Dsource,sort%2C%20and%20manipulate%20that%20data.
+"""
 
-def data():
-    response = rp.get("https://jsonplaceholder.typicode.com/users")
-    json_data = response.json() if response and response.status_code == 200 else None
-    data = []
-
-    for json_object in json_data:
-        print("id: %s" % (json_object["id"]))
-        print("name: %s" % (json_object["name"]))
-
-        data.append(json_object["id"])
-        data.append(json_object["name"])
-        data.append(json_object["email"])
-
-    print(data)
+import pandas as pd
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+import seaborn as sns
+from matplotlib import rcParams
 
 def api_request():      #Handle errors gracefully
     response = rp.get("https://api.dccresource.com/api/games")
     json_data = response.json() if response and response.status_code == 200 else None
     return json_data
+
+def pd_process(json_data):
+    df = pd.read_json(json_data)
+    df.isnull()
+    df.dtypes()
+
+
 
 def publisher_data(json_data):
     data = []
