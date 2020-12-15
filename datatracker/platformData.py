@@ -9,7 +9,6 @@ class platformData(object):
     def __init__(self, game_data):
         self.game_data = game_data
 
-
     def copiesPer_Dict(game_data):   #Calls multiple functions to return two serpate lists of copies per console
         numberOfPlatforms = platformData._findUnique(game_data)
         platforms = platformData._titlesPer(game_data)
