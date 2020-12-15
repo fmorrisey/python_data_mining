@@ -104,9 +104,16 @@ def group_PlatformManufacture(publishers, year): #Groups consoles by manufacture
                     PerComp.append(publisher)
                 else:
                     Other.append(publisher)
+            else:pass
+        else: pass
+
+    return Nintendo #, Sony, Atari, Microsoft, Atari, Sega, PerComp, Other
 
 
-    return Nintendo, Sony, Atari, Microsoft, Atari, Sega, PerComp, Other
+def listPrinter(json_data):
+    for game in json_data:
+        print(game)
+
 
 game_data = api_request()
 
@@ -114,9 +121,14 @@ find_Platforms(game_data)                       #find unique platforms
 platforms = count_Platform(game_data)           #Counts titles per platform
 topPlatforms = top_Platforms(platforms, 31)     #Sorts the data by top platform descending order
 
-groupedPlatforms = group_PlatformManufacture(game_data, 2000)
+groupedPlatforms = group_PlatformManufacture(game_data, 2016)
 #returns two separate strings in order of platform names and titles count
 platform_names, platform_titles_count = zip_Platforms(topPlatforms)
+
+
+listPrinter(groupedPlatforms)
+
+
 
 """
 platform_names = split_Key(topPlatforms)
