@@ -49,6 +49,12 @@ def groupByDecade(json_data):
     return dec1980 #, dec1990, dec2000, dec2010, dec2020, other
     #Perserves namespace information
 
+def platformOverDecade(json_data, platform):
+
+    for decade in json_data:
+        for platform in decade:
+            
+
 
 
 def listPrinter(json_data):
@@ -59,6 +65,9 @@ def listPrinter(json_data):
 game_data = api.requests_NameSpace("https://api.dccresource.com/api/games")
 
 eighties = groupByDecade(game_data)
+
+
+
 
 listPrinter(eighties)
 

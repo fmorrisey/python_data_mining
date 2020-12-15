@@ -78,23 +78,43 @@ def zip_Platforms(platforms):
     print(titles)
     return names, titles
     
-def group_consoleManufacture(publishers, top): #deletes publishers with less than min number
-    top_ten = set((""))
+def group_PlatformManufacture(publishers, year): #Groups consoles by manufacturer
+    Nintendo = []
+    Sony = []
+    Microsoft = []
+    Atari = []
+    Sega = []
+    PerComp = []
+    Other = []
+    
+    for publisher in publishers:
+        if type(publisher.year) != type(None):
+            if publisher.year >= year:
+                if (publisher.platform == 'NES') or (publisher.platform == 'GC') or (publisher.platform == 'SNES') or (publisher.platform == 'GBA') or (publisher.platform == 'GB') or (publisher.platform == 'Wii') or (publisher.platform == 'WiiU') or (publisher.platform == 'DS') or (publisher.platform == '3DS') or (publisher.platform == 'N64'):
+                    Nintendo.append(publisher)
+                elif (publisher.platform == 'XB') or (publisher.platform == 'XOne') or (publisher.platform == 'X360'):
+                    Microsoft.append(publisher)
+                elif (publisher.platform == 'PS') or (publisher.platform == 'PS2') or (publisher.platform == 'PS3') or (publisher.platform == 'PSP') or (publisher.platform == 'PS4') or (publisher.platform == 'PSV') or (publisher.platform == 'PSV'):
+                    Sony.append(publisher)
+                elif (publisher.platform == 'SAT') or (publisher.platform == 'GEN'):
+                    Sega.append(publisher)
+                elif (publisher.platform == '2600'):
+                    Atari.append(publisher)
+                elif (publisher.platform == 'PC'):
+                    PerComp.append(publisher)
+                else:
+                    Other.append(publisher)
 
-    top_ten = dict(ct(publishers).most_common(top))
-    #for publisher, count in publishers.most_common():
 
-    print(top_ten)
-    print(len(top_ten))
-
-    return top_ten
+    return Nintendo, Sony, Atari, Microsoft, Atari, Sega, PerComp, Other
 
 game_data = api_request()
 
 find_Platforms(game_data)                       #find unique platforms
 platforms = count_Platform(game_data)           #Counts titles per platform
-topPlatforms = top_Platforms(platforms, 25)     #Sorts the data by top platform descending order
+topPlatforms = top_Platforms(platforms, 31)     #Sorts the data by top platform descending order
 
+groupedPlatforms = group_PlatformManufacture(game_data, 2000)
 #returns two separate strings in order of platform names and titles count
 platform_names, platform_titles_count = zip_Platforms(topPlatforms)
 
