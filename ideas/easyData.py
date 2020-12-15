@@ -53,6 +53,9 @@ def platformOverDecade(json_data, platform):
 
     for decade in json_data:
         for platform in decade:
+            break
+    
+    return null
             
 
 
