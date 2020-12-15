@@ -3,7 +3,6 @@ from types import SimpleNamespace
 from collections import Counter as ct
 import collections as col
 
-from requests import NullHandler
 
 #names , titles = platformData.copiesPerPlatform(gameData)
 
@@ -13,7 +12,8 @@ class salesData(object):
 
     def byConsolePerDecade(game_data):
         #years = salesData.decades(game_data)
-        dec1980 = salesData.decadesGrouping(game_data)
+        dec1980 = salesData.groupByDecade(game_data)
+        eightiesPrinter(dec1980)
         pass
 
         return dec1980
@@ -27,28 +27,32 @@ class salesData(object):
         print(_decades_set)
         return _decades_set
 
-    def decadesGrouping(json_data):
-        dec1980 = dict()
-        other = dict()
+    def groupByDecade(json_data):
+        dec1980 = {}
+        dec1990 = {}
+        dec2000 = {}
+        dec2010 = {}
+        dec2020 = {}
+        other = {}
          
         for json_object in json_data:
-            if json_object.year is None:
-                pass
-            elif json_object.year >= 1990:
-                dec1980 = dict(json_object).update()
-            else:
-                other = dict(json_object).update()
-                          
-            """                
-            elif 1990 <= json_object.year <= 1999:
-                dec1990.update(json_object)
-            elif 2000 <= json_object.year <= 2009:
-                dec1990.update(json_object)
-            elif 2010 <= json_object.year <= 2019:
-                dec1990.update(json_object)
-            elif 2020 <= json_object.year <= 2021:
-                dec1990.update(json_object)
-        return dec1980 , dec1990, dec2000, dec2010, dec2020, na
-            """
-        print(dec1980)
-   
+            if type(json_object.year) != type(None):
+                if 1980 <= json_object.year >= 1990:
+                    dec1980 = dec1980 | json_object
+                       
+                elif 1990 <= json_object.year <= 1999:
+                    dec1990 = dec1990 | json_object
+
+                elif 2000 <= json_object.year <= 2009:
+                    dec2000 = dec2000 | json_object
+                    
+                elif 2010 <= json_object.year <= 2019:
+                    dec2010 = dec2010 | json_object
+
+                elif 2020 <= json_object.year <= 2021:
+                    dec2020 = dec2020 | json_object
+
+        return dec1980 , dec1990, dec2000, dec2010, dec2020, other
+
+    #def eightiesPrinter(json_data):
+        

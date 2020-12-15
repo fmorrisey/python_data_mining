@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Users/Morio-Kun/Code/python/pythondata/.venv/bin/python3",
+    "python.pythonPath": ".venv/bin/python",
     "python.linting.mypyEnabled": true,
     "python.linting.enabled": true
 }

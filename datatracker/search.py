@@ -1,6 +1,6 @@
 import json
 import requests
-
+from collections import defaultdict as dd
 
 def api_request(): #Handle errors gracefully
     response = requests.get("https://api.dccresource.com/api/games")
@@ -9,11 +9,13 @@ def api_request(): #Handle errors gracefully
     return game_data
 
 
-def searchByName(game_data, query):
+def searchByName(game_data, *args):
 
-    for game in game_data:
-        if game.name == query:
-            
+    helperdict = dd.defaultdict(set)
+
+    for game, name in game_data.items():
+        for name in game_data.split('+'):
+            helperdict[name].add(game)
 
 
 

@@ -9,17 +9,19 @@ class platformData(object):
     def __init__(self, game_data):
         self.game_data = game_data
 
+
     def copiesPer_Dict(game_data):   #Calls multiple functions to return two serpate lists of copies per console
         numberOfPlatforms = platformData._findUnique(game_data)
         platforms = platformData._titlesPer(game_data)
         topPlatforms = platformData._top_Platforms(platforms, numberOfPlatforms)     #Sorts the data by top platform descending order
         return topPlatforms #Returns Dict
-    
+
+
     def copiesPer_Lists(game_data):   #Calls multiple functions to return two serpate lists of copies per console
         numberOfPlatforms = platformData._findUnique(game_data)
         platforms = platformData._titlesPer(game_data)
         topPlatforms = platformData._top_Platforms(platforms, numberOfPlatforms)     #Sorts the data by top platform descending order
-        platform_names, platform_titles_count = platformData._zip_Platforms(topPlatforms)
+        platform_names, platform_titles_count = platformData._zip_Platforms(topPlatforms) #Pulls the dictionary apart
         return platform_names, platform_titles_count #Return Lists
    
    
