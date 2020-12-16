@@ -34,8 +34,10 @@ def find_publisher(json_data):
     publisher_set = set((""))
     
     for json_object in json_data:
-        publisher_set.add(json_object.publisher)
-   
+        if json_object.year >= 2013:
+            publisher_set.add(json_object.publisher)
+        else: pass
+        
     print(f"A list {publisher_set}") 
     print(len(publisher_set)) # 579 publishers
 
@@ -77,11 +79,11 @@ json_data = api_request()
 
 #publisher_data(json_data)
 #finds unique publishers taking advantage of the set data structure
-#find_publisher(json_data)                      
+find_publisher(json_data)                      
 
 # Counts the number of publishers returns a dict with 
 # Publisher, number of titles Published
-publishers = count_publisher(json_data)
+#publishers = count_publisher(json_data)
 
 """
 #drops publishers with less than 50 titles

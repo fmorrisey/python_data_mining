@@ -14,6 +14,7 @@ class search:
         for game in game_data:
             if search_term.casefold() in game.name.casefold():
                 results.append(game)
+                break
         
         return results, len(results)
     

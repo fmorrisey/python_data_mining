@@ -9,15 +9,14 @@ import collections as col
 class salesData(object):
     def __init__(self, game_data):
         self.game_data = game_data
+   
 
-    def byConsolePerDecade(game_data):
-        #years = salesData.decades(game_data)
-        dec1980 = salesData.groupByDecade(game_data)
-        eightiesPrinter(dec1980)
-        pass
-
-        return dec1980
-
+    """\"\"\"sumary_line
+        
+        Keyword arguments:
+        argument -- description
+        Return: return_description
+        \"\"\"""sumary_line"""
     def decades(json_data):
         _decades_set = set((""))
 
@@ -27,32 +26,47 @@ class salesData(object):
         print(_decades_set)
         return _decades_set
 
-    def groupByDecade(json_data):
-        dec1980 = {}
-        dec1990 = {}
-        dec2000 = {}
-        dec2010 = {}
-        dec2020 = {}
-        other = {}
-         
+    def groupByDecade(json_data, decade):
+        dec1980 = []
+        dec1990 = []
+        dec2000 = []
+        dec2010 = []
+        dec2020 = []
+        other = []
+        
         for json_object in json_data:
             if type(json_object.year) != type(None):
-                if 1980 <= json_object.year >= 1990:
-                    dec1980 = dec1980 | json_object
-                       
+                if 1980 <= json_object.year <= 1989:
+                    dec1980.append(json_object)
+                        
                 elif 1990 <= json_object.year <= 1999:
-                    dec1990 = dec1990 | json_object
+                    dec1990.append(json_object)
 
                 elif 2000 <= json_object.year <= 2009:
-                    dec2000 = dec2000 | json_object
+                    dec2000.append(json_object)
                     
                 elif 2010 <= json_object.year <= 2019:
-                    dec2010 = dec2010 | json_object
+                    dec2010.append(json_object)
 
-                elif 2020 <= json_object.year <= 2021:
-                    dec2020 = dec2020 | json_object
+                elif 2020 <= json_object.year <= 2029:
+                    dec2020.append(json_object)
+                else:
+                    other.append(json_object)
 
-        return dec1980 , dec1990, dec2000, dec2010, dec2020, other
+        """Decade Switch"""
+        switcher {
+            1980: 
+                for json_object in json_data:
+                if type(json_object.year) != type(None):
+                    if 1980 <= json_object.year <= 1989:
+                        dec1980.append(json_object)
+                return dec1980,
+           
+            }
+        func = switcher.get(json_data, lambda: "nothing")
+        
+        
+        
 
-    #def eightiesPrinter(json_data):
+    # def eightiesPrinter(json_data):
         
