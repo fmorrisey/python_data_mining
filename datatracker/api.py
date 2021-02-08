@@ -12,7 +12,7 @@ class api:
         json_data = json.loads(response.content, object_hook=lambda d:SimpleNamespace(**d))\
             if response and response.status_code == 200 else None
         print(type(json_data))
-        return json_data
+        return json_data    #Returns Namespace response
 
     def requests_JSONList(apiUrl): #Handle errors gracefully
         response = requests.get(apiUrl)

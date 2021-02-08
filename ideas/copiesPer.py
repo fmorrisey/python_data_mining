@@ -2,7 +2,7 @@
 from api import api
 
 
-def _salesPer_Dict(game_data, yearMin, yearMax):
+def _salesPer_Global(game_data, yearMin, yearMax):
     platforms = _findUniquePlatforms(game_data)
     platforms_dict = _createPlatformDict(platforms)
     globalSalesRAW = _salesGlobal(game_data, platforms_dict, yearMin, yearMax)
@@ -44,5 +44,5 @@ def dictionaryPrinter(salesPer):
         print(game, ":", sales)
 
 game_data = api.requests_NameSpace("https://api.dccresource.com/api/games")
-salesPer = _salesPer_Dict(game_data, 2013, 2021)
+salesPer = _salesPer_Global(game_data, 2013, 2021)
 dictionaryPrinter(salesPer)
