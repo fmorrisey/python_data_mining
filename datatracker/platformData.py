@@ -66,8 +66,7 @@ class platformData(object):
         return unique_platforms
 
     def _findUniquePublishers(json_data, yearMin, yearMax):
-        #finds unique publishers taking advantage of the set data structure
-        #Constructor
+        # finds unique publishers taking advantage of the set data structure
         publisher_set = set((""))
 
         for json_object in json_data:
