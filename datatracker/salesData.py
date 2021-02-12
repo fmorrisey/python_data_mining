@@ -71,7 +71,6 @@ class salesData(object):
 
         return dictionary
 
-
     """
     def _salesRegion(game_data, platforms_dict, yearMin, yearMax):
         for game in game_data:
