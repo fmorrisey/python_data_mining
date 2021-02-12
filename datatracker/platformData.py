@@ -3,8 +3,6 @@ from types import SimpleNamespace
 from collections import Counter as ct
 import collections as col
 
-#names , titles = platformData.copiesPerPlatform(gameData)
-
 
 class platformData(object):
     def __init__(self, game_data):
@@ -48,9 +46,8 @@ class platformData(object):
         platforms = ct(k.platform for k in json_data if k.platform)
         return platforms
 
+    # Finds unique platforms taking advantage of the set data structure
     def _findUniquePlatforms(json_data, yearMin, yearMax):
-        # finds unique platforms taking advantage of the set data structure
-        # Constructor
         platform_set = set((""))
 
         for platform in json_data:
@@ -65,8 +62,8 @@ class platformData(object):
         unique_platforms = len(platform_set)
         return unique_platforms
 
+    # Finds unique publishers taking advantage of the set data structure
     def _findUniquePublishers(json_data, yearMin, yearMax):
-        # finds unique publishers taking advantage of the set data structure
         publisher_set = set((""))
 
         for json_object in json_data:
