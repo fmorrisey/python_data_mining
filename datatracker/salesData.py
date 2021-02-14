@@ -2,10 +2,6 @@ from types import SimpleNamespace
 
 from collections import Counter as ct
 import collections as col
-
-
-#names , titles = platformData.copiesPerPlatform(gameData)
-
 class salesData(object):
     def __init__(self, game_data):
         self.game_data = game_data
