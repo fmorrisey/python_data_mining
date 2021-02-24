@@ -4,7 +4,7 @@ class printer:
 
     def dict(data):
         for key, value in data.items():
-            print(key, " : $", value)
+            print(f"{key}: ${value}")
 
     def raw(data):
         print(data)
