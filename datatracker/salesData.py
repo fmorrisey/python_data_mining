@@ -58,19 +58,6 @@ class salesData(object):
                     years.append(game.year)
         return years
 
-    # Cleans null data from the dictionary
-    def _dictionaryCleaner(dictionary):
-        nullEntries = []
-        for entry in dictionary:
-            if (dictionary[entry] == 0
-                    or dictionary[entry] == type(None)):
-                nullEntries.append(entry)
-
-        for entry in nullEntries:
-            del dictionary[entry]
-
-        return dictionary
-
     # Creates a dictionary of regional sales
     def _salesRegion(game_data, platforms_dict, yearMin, yearMax):
         for game in game_data:
@@ -83,4 +70,16 @@ class salesData(object):
 
             else: pass
         return platforms_dict
-    
+
+    # Cleans null data from the dictionary
+    def _dictionaryCleaner(dictionary):
+        nullEntries = []
+        for entry in dictionary:
+            if (dictionary[entry] == 0
+                    or dictionary[entry] == type(None)):
+                nullEntries.append(entry)
+
+        for entry in nullEntries:
+            del dictionary[entry]
+
+        return dictionary

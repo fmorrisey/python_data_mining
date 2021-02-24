@@ -83,3 +83,16 @@ class platformData(object):
         print(names)
         print(titles)
         return names, titles
+    
+    # Cleans null data from the dictionary
+    def _dictionaryCleaner(dictionary):
+        nullEntries = []
+        for entry in dictionary:
+            if (dictionary[entry] == 0
+                    or dictionary[entry] == type(None)):
+                nullEntries.append(entry)
+
+        for entry in nullEntries:
+            del dictionary[entry]
+
+        return dictionary
