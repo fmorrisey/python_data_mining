@@ -13,3 +13,5 @@ if __name__ == '__main__':
     
     salesdata = sds.salesPer_Regional(game_data, 2013, 2021)
     pt.dict(salesdata)
+    pt.listNewLine(salesdata)
+
